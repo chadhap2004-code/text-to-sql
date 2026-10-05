@@ -1,0 +1,17 @@
+[
+  { "id": 1, "question": "How many customers do we have?", "gold_sql": "SELECT COUNT(*) as count FROM customers" },
+  { "id": 2, "question": "What is the total amount spent across all transactions?", "gold_sql": "SELECT SUM(amount) as total FROM transactions" },
+  { "id": 3, "question": "What is the average transaction amount?", "gold_sql": "SELECT AVG(amount) as avg_amount FROM transactions" },
+  { "id": 4, "question": "How many transactions are marked as fraud?", "gold_sql": "SELECT COUNT(*) as count FROM transactions WHERE is_fraud = 1" },
+  { "id": 5, "question": "How many transactions used UPI as the payment method?", "gold_sql": "SELECT COUNT(*) as count FROM transactions WHERE payment_method = 'upi'" },
+  { "id": 6, "question": "What is the total spend in the electronics category?", "gold_sql": "SELECT SUM(amount) as total FROM transactions WHERE category = 'electronics'" },
+  { "id": 7, "question": "Top 5 merchants by total spend", "gold_sql": "SELECT merchant, SUM(amount) as total FROM transactions GROUP BY merchant ORDER BY total DESC LIMIT 5" },
+  { "id": 8, "question": "What is the average amount spent per category?", "gold_sql": "SELECT category, AVG(amount) as avg_amount FROM transactions GROUP BY category" },
+  { "id": 9, "question": "How many distinct payment methods are used?", "gold_sql": "SELECT COUNT(DISTINCT payment_method) as count FROM transactions" },
+  { "id": 10, "question": "What is the oldest customer's age?", "gold_sql": "SELECT MAX(age) as max_age FROM customers" },
+  { "id": 11, "question": "What is the youngest customer's age?", "gold_sql": "SELECT MIN(age) as min_age FROM customers" },
+  { "id": 12, "question": "Top 3 customers by total spending, showing their name and city", "gold_sql": "SELECT c.name, c.city, SUM(t.amount) as total FROM transactions t JOIN customers c ON t.customer_id = c.id GROUP BY c.id ORDER BY total DESC LIMIT 3" },
+  { "id": 13, "question": "How many transactions happened for each category?", "gold_sql": "SELECT category, COUNT(*) as count FROM transactions GROUP BY category" },
+  { "id": 14, "question": "Which categories have an average transaction amount greater than 5000?", "gold_sql": "SELECT category, AVG(amount) as avg_amount FROM transactions GROUP BY category HAVING AVG(amount) > 5000" },
+  { "id": 15, "question": "How many transactions does each payment method have, ordered from highest to lowest?", "gold_sql": "SELECT payment_method, COUNT(*) as count FROM transactions GROUP BY payment_method ORDER BY count DESC" }
+]
